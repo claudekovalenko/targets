@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Targets</title>
+  <meta name="description" content="See and track the targets you are pursuing.">
+  <meta name="theme-color" content="#1f2a44">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Targets">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="backBtn" class="icon-btn" aria-label="Back" hidden>&larr;</button>
+    <h1 id="pageTitle">My Targets</h1>
+    <button id="menuBtn" class="icon-btn" aria-label="Menu">&#8942;</button>
+  </header>
+
+  <main id="app"></main>
+
+  <button id="addBtn" class="fab" aria-label="Add target">+</button>
+
+  <!-- Add / edit target -->
+  <dialog id="targetDialog">
+    <form id="targetForm" method="dialog">
+      <h2 id="targetDialogTitle">New target</h2>
+      <label>Target
+        <input name="title" required placeholder="e.g. Preach the Word on Instagram">
+      </label>
+      <label>Category
+        <input name="category" list="categoryList" placeholder="e.g. Faith">
+        <datalist id="categoryList"></datalist>
+      </label>
+      <label>Why this matters
+        <textarea name="why" rows="3" placeholder="The vision behind this target"></textarea>
+      </label>
+      <div class="row">
+        <label>Start date
+          <input name="startDate" type="date">
+        </label>
+        <label>Target date
+          <input name="targetDate" type="date">
+        </label>
+      </div>
+      <div class="row">
+        <label>Rhythm (times per week)
+          <input name="cadence" type="number" min="0" max="50" placeholder="e.g. 3">
+        </label>
+        <label>Link
+          <input name="link" type="url" placeholder="https://instagram.com/…">
+        </label>
+      </div>
+      <label>Steps (one per line)
+        <textarea name="milestones" rows="5" placeholder="Set up profile&#10;Plan first month of posts"></textarea>
+      </label>
+      <menu>
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Log activity -->
+  <dialog id="logDialog">
+    <form id="logForm" method="dialog">
+      <h2>Log progress</h2>
+      <label>Date
+        <input name="date" type="date" required>
+      </label>
+      <label>What did you do?
+        <input name="note" required placeholder="e.g. Posted a Reel on John 3:16">
+      </label>
+      <label>Scripture / topic (optional)
+        <input name="tag" placeholder="e.g. Romans 8:28">
+      </label>
+      <label>Link (optional)
+        <input name="link" type="url" placeholder="https://instagram.com/p/…">
+      </label>
+      <menu>
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button type="submit" class="primary">Log it</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Menu -->
+  <dialog id="menuDialog">
+    <form method="dialog" class="menu-list">
+      <h2>Menu</h2>
+      <button type="button" id="toggleArchived">Show archived targets</button>
+      <button type="button" id="exportBtn">Export backup (JSON)</button>
+      <label class="file-btn">Import backup
+        <input type="file" id="importInput" accept="application/json" hidden>
+      </label>
+      <button type="button" id="installBtn" hidden>Install app</button>
+      <menu>
+        <button type="button" class="ghost" data-close>Close</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
