@@ -5,24 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Targets</title>
   <meta name="description" content="See and track the targets you are pursuing.">
-  <meta name="theme-color" content="#1f2a44">
+  <meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#13161d" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Targets">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="topbar">
-    <button id="backBtn" class="icon-btn" aria-label="Back" hidden>&larr;</button>
-    <h1 id="pageTitle">My Targets</h1>
-    <button id="menuBtn" class="icon-btn" aria-label="Menu">&#8942;</button>
+    <button id="backBtn" class="icon-btn" aria-label="Back" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <span class="topbar-title" id="topbarTitle"></span>
+    <button id="menuBtn" class="icon-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="19" r="1.4"/></svg>
+    </button>
   </header>
 
   <main id="app"></main>
 
-  <button id="addBtn" class="fab" aria-label="Add target">+</button>
+  <button id="addBtn" class="fab" aria-label="Add target">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+  </button>
 
   <!-- Add / edit target -->
   <dialog id="targetDialog">
@@ -31,10 +42,18 @@
       <label>Target
         <input name="title" required placeholder="e.g. Preach the Word on Instagram">
       </label>
-      <label>Category
-        <input name="category" list="categoryList" placeholder="e.g. Faith">
-        <datalist id="categoryList"></datalist>
-      </label>
+      <div class="row">
+        <label>Category
+          <input name="category" list="categoryList" placeholder="e.g. Faith">
+          <datalist id="categoryList"></datalist>
+        </label>
+        <label>Type
+          <select name="kind">
+            <option value="standard">Steps &amp; activity</option>
+            <option value="library">Library (bookshelf)</option>
+          </select>
+        </label>
+      </div>
       <label>Why this matters
         <textarea name="why" rows="3" placeholder="The vision behind this target"></textarea>
       </label>
@@ -83,6 +102,60 @@
       <menu>
         <button type="button" class="ghost" data-close>Cancel</button>
         <button type="submit" class="primary">Log it</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <!-- Add / edit book -->
+  <dialog id="bookDialog">
+    <form id="bookForm" method="dialog">
+      <h2 id="bookDialogTitle">Add a book</h2>
+      <label>Title
+        <input name="title" required placeholder="e.g. Mere Christianity">
+      </label>
+      <label>Author
+        <input name="author" placeholder="e.g. C. S. Lewis">
+      </label>
+      <div class="row">
+        <label>Format
+          <select name="format">
+            <option value="physical">Physical</option>
+            <option value="digital">Digital</option>
+            <option value="both">Physical + digital</option>
+          </select>
+        </label>
+        <label>Status
+          <select name="status">
+            <option value="wishlist">Want to get</option>
+            <option value="shelf">On my shelf</option>
+            <option value="reading">Reading &amp; marking</option>
+            <option value="annotated">Annotated</option>
+          </select>
+        </label>
+      </div>
+      <label class="check">
+        <input type="checkbox" name="keeper" class="tick">
+        <span><strong>Keeper</strong> — a book I'll carry with me and pass on</span>
+      </label>
+      <label>Notes &amp; annotation summary
+        <textarea name="notes" rows="4" placeholder="What this book taught you, how you marked it…"></textarea>
+      </label>
+
+      <div id="marksSection" hidden>
+        <div class="dialog-subhead">Marked passages</div>
+        <ul class="marks" id="marksList"></ul>
+        <div class="add-mark">
+          <input id="markText" placeholder="A line you underlined…">
+          <input id="markPage" placeholder="p." inputmode="numeric" class="page-input">
+          <button type="button" class="ghost small" id="addMarkBtn">Add</button>
+        </div>
+      </div>
+
+      <menu>
+        <button type="button" class="danger" id="deleteBookBtn" hidden>Remove</button>
+        <span class="spacer"></span>
+        <button type="button" class="ghost" data-close>Cancel</button>
+        <button type="submit" class="primary">Save</button>
       </menu>
     </form>
   </dialog>

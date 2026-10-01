@@ -2,7 +2,10 @@
 
 A small installable web app (PWA) for seeing and tracking the targets you're pursuing.
 
-The first target is already loaded: **Preach the Word on Instagram**. It starts January 1, has a 3-posts-per-week rhythm, and comes with launch steps you can edit.
+Two targets come built in, and you can edit both:
+
+- **Preach the Word on Instagram**: starts January 1, with a rhythm of 3 posts a week and a set of launch steps.
+- **Build an Annotated Library**: a bookshelf for a physical (and digital) library of books you have marked up and made your own.
 
 ## What it does
 
@@ -10,6 +13,7 @@ The first target is already loaded: **Preach the Word on Instagram**. It starts 
 - **Steps**: check them off as you go, and the progress bar fills.
 - **Activity log**: log each post, sermon or study session, with an optional scripture or topic and a link.
 - **Weekly rhythm and streak**: shows this week's count against your rhythm, and how many weeks in a row you've met it.
+- **Library targets** show a bookshelf. Each book has a status (want to get, on my shelf, reading and marking, annotated) and a format (physical, digital or both). You can mark a book as a **keeper**, write notes, and save marked passages with page numbers. When you mark a book Annotated, an entry is added to the target's activity.
 - **Archive**, **backup export** and **import** are in the ⋮ menu.
 - Works offline, and you can install it to your phone's home screen.
 
